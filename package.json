@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ysk8hori/functional-typescript.git"
+    "url": "git+https://github.com/ysk8hori/simple-functional-ts.git"
   },
   "keywords": [
     "typescript",
@@ -20,9 +20,9 @@
   "author": "Yosuke Hori",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ysk8hori/functional-typescript/issues"
+    "url": "https://github.com/ysk8hori/simple-functional-ts/issues"
   },
-  "homepage": "https://github.com/ysk8hori/functional-typescript#readme",
+  "homepage": "https://github.com/ysk8hori/simple-functional-ts#readme",
   "devDependencies": {
     "ts-loader": "^7.0.5",
     "typescript": "^3.9.3",
