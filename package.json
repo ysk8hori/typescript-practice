@@ -1,7 +1,7 @@
 {
-  "private": true,
+  "private": false,
   "type": "module",
-  "name": "functional-typescript",
+  "name": "simple-functional-ts",
   "version": "1.0.0",
   "description": "Functional programing library for TypeScript.",
   "main": "index.js",
