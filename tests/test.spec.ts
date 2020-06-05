@@ -1,5 +1,6 @@
 import { pipe } from '../src/pipe';
 import { identity } from '../src/identity';
+import { tap } from '../src/tap';
 function createFizzBuzz(
   fizzBuzzString: string,
   ...nums: number[]
@@ -16,7 +17,14 @@ const toFizzBuzz = createFizzBuzz('FizzBuzz', 3, 5);
 function toString(input: any): string {
   return input.toString();
 }
-const fizzbuzz = pipe(identity<number>(), toFizzBuzz, toFizz, toBuzz, toString);
+const fizzbuzz = pipe(
+  identity<number>(),
+  toFizzBuzz,
+  toFizz,
+  toBuzz,
+  tap<number | string>(console.log),
+  toString
+);
 
 describe('FizzBuzz', () => {
   test('2 -> 2', () => expect(fizzbuzz(2)).toEqual('2'));
