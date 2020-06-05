@@ -1,5 +1,11 @@
 const defaultFunction = (p: any) => p;
 
+/**
+ * # pipe
+ *
+ * 与えられた関数を順に実行する関数を生成する。
+ * １つ目の関数の実行結果を次の関数へ渡し、次の関数の実行結果はその次の関数へ、、、という具合に順次実行する。
+ */
 export function pipe<
   F extends (...args: any[]) => T0,
   T0 = ReturnType<F>,
