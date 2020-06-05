@@ -1,5 +1,5 @@
 import { pipe } from '../src/pipe';
-
+import { identity } from '../src/identity';
 function createFizzBuzz(
   fizzBuzzString: string,
   ...nums: number[]
@@ -10,14 +10,13 @@ function createFizzBuzz(
       : input;
 }
 
-const inputNumber = (num: number) => num;
 const toFizz = createFizzBuzz('Fizz', 3);
 const toBuzz = createFizzBuzz('Buzz', 5);
 const toFizzBuzz = createFizzBuzz('FizzBuzz', 3, 5);
 function toString(input: any): string {
   return input.toString();
 }
-const fizzbuzz = pipe(inputNumber, toFizzBuzz, toFizz, toBuzz, toString);
+const fizzbuzz = pipe(identity<number>(), toFizzBuzz, toFizz, toBuzz, toString);
 
 describe('FizzBuzz', () => {
   test('2 -> 2', () => expect(fizzbuzz(2)).toEqual('2'));
