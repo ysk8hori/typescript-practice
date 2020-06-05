@@ -1,6 +1,6 @@
 const defaultFunction = (p: any) => p;
 
-export const pipe = <
+export function pipe<
   F extends (...args: any[]) => T0,
   T0 = ReturnType<F>,
   T1 = T0,
@@ -23,4 +23,6 @@ export const pipe = <
   f7: (p: T6) => T7 = defaultFunction,
   f8: (p: T7) => T8 = defaultFunction,
   f9: (p: T8) => T9 = defaultFunction
-) => (...p: Parameters<F>) => f9(f8(f7(f6(f5(f4(f3(f2(f1(f0(...p))))))))));
+): (...p: Parameters<F>) => T9 {
+  return (...p: Parameters<F>) => f9(f8(f7(f6(f5(f4(f3(f2(f1(f0(...p))))))))));
+}
