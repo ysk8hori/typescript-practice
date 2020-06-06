@@ -1,7 +1,7 @@
-import { pipe } from '../src/pipe';
-import { identity } from '../src/identity';
-import { tap } from '../src/tap';
-import { seq } from '../src/seq';
+import { pipe } from '../src/functions/pipe';
+import { identity } from '../src/functions/identity';
+import { tap } from '../src/functions/tap';
+import { seq } from '../src/functions/seq';
 function createFizzBuzz(
   fizzBuzzString: string,
   ...nums: number[]

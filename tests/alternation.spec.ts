@@ -1,4 +1,4 @@
-import { alternation } from '../src/alternation';
+import { alternation } from '../src/functions/alternation';
 
 describe('alternation', () => {
   describe('number', () => {
