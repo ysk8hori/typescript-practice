@@ -22,11 +22,11 @@ export default class IO<T> {
   public static from<T>(effect: () => T): IO<T> {
     return new IO(effect);
   }
-  public map<T2>(fn: (arg: T) => T2): IO<T2> {
+  public map<R>(f: (p: T) => R): IO<R> {
     const self = this;
-    return new IO(() => fn(self.effect()));
+    return new IO(() => f(self.effect()));
   }
-  public chain<T3>(fn: (arg: T) => T3): T3 {
+  public chain<R>(fn: (arg: T) => R): R {
     return fn(this.effect());
   }
   public run(): T {
