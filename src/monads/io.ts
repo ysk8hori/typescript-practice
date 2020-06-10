@@ -1,3 +1,5 @@
+import Monads from './monads';
+
 /**
  * # IO
  *
@@ -13,7 +15,7 @@
  *
  * LuisAtencio,株式会社イディオマコムニカ 加藤大雄. JavaScript関数型プログラミング 複雑性を抑える発想と実践法を学ぶ (impress top gearシリーズ) (Japanese Edition) (Kindle の位置No.3715-3719). Kindle 版.
  */
-export default class IO<T> {
+export default class IO<T> implements Monads<T> {
   private constructor(private effect: () => T) {}
 
   public static of<T>(a: T): IO<T> {
@@ -31,5 +33,24 @@ export default class IO<T> {
   }
   public run(): T {
     return this.effect();
+  }
+  // /**
+  //  * @deprecated runまたはchainを使用してください。
+  //  */
+  // public get(): T {
+  //   return this.run();
+  // }
+  // /**
+  //  * @deprecated runまたはchainを使用してください。
+  //  */
+  // public join<T1 = T extends IO<unknown> ? unknown : T>(): IO<T1> {
+  //   // @ts-ignore
+  //   return IO.of(this.run());
+  // }
+  /**
+   * @deprecated runが走ることに注意してください。
+   */
+  public toString(): string {
+    return `IO(${this.run()})`;
   }
 }
