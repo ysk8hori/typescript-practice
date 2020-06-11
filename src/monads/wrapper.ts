@@ -8,8 +8,9 @@ export default class Wrapper<T> implements Monads<T> {
   public map<R>(f: (p: T) => R): Wrapper<R> {
     return Wrapper.of(f(this.value));
   }
-  public join(): Wrapper<MonadsValue<T>> {
+  public join(): Wrapper<FlatMonads<T>> {
     if (this.value instanceof Wrapper) {
+      // @ts-ignore
       return this.value.join();
     } else {
       // @ts-ignore
@@ -21,4 +22,10 @@ export default class Wrapper<T> implements Monads<T> {
     return `Wrapper(${this.value})`;
   }
 }
-type MonadsValue<T> = T extends Monads<infer U> ? U : T;
+
+type Flat<T> = T extends Monads<infer U> ? U : T;
+type IsMonads<T> = T extends Monads<any> ? true : false;
+type SuperFlatMonads<T> = Flat<Flat<Flat<Flat<Flat<Flat<Flat<T>>>>>>>;
+type FlatMonads<T> = IsMonads<SuperFlatMonads<T>> extends false
+  ? SuperFlatMonads<T>
+  : unknown;
