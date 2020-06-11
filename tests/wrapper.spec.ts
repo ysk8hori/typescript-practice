@@ -15,6 +15,6 @@ describe('wrapper', () => {
     expect(wrapper1.map((_) => Wrapper.of(3)).toString()).toEqual(
       'Wrapper(Wrapper(3))'
     );
-    expect(wrapper1.join<number>().toString()).toEqual('Wrapper(2)');
+    expect(wrapper1.join().toString()).toEqual('Wrapper(2)');
   });
 });

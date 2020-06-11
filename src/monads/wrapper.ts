@@ -8,8 +8,7 @@ export default class Wrapper<T> implements Monads<T> {
   public map<R>(f: (p: T) => R): Wrapper<R> {
     return Wrapper.of(f(this.value));
   }
-  /** モナドの最深部が保持する型を判定するのは難しいため、this.valueがモナドの場合はMonads<unknown>を返す。 */
-  public join<T1 = T extends Wrapper<unknown> ? unknown : T>(): Wrapper<T1> {
+  public join(): Wrapper<MonadsValue<T>> {
     if (this.value instanceof Wrapper) {
       return this.value.join();
     } else {
@@ -22,3 +21,4 @@ export default class Wrapper<T> implements Monads<T> {
     return `Wrapper(${this.value})`;
   }
 }
+type MonadsValue<T> = T extends Monads<infer U> ? U : T;
