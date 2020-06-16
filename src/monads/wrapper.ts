@@ -8,12 +8,12 @@ export default class Wrapper<T> implements Monads<T> {
   public map<R>(f: (p: T) => R): Wrapper<R> {
     return Wrapper.of(f(this.value));
   }
-  public join(): Wrapper<FlatMonads<T>> {
+  public join(): Wrapper<T>;
+  public join(): Wrapper<FlatMonads<T>>;
+  public join(): Wrapper<FlatMonads<T>> | Wrapper<T> {
     if (this.value instanceof Wrapper) {
-      // @ts-ignore
       return this.value.join();
     } else {
-      // @ts-ignore
       return this;
     }
   }
