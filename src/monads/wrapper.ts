@@ -11,11 +11,7 @@ export default class Wrapper<T> implements Monads<T> {
   public join(): Wrapper<T>;
   public join(): Wrapper<FlatMonads<T>>;
   public join(): Wrapper<FlatMonads<T>> | Wrapper<T> {
-    if (this.value instanceof Wrapper) {
-      return this.value.join();
-    } else {
-      return this;
-    }
+    return this.value instanceof Wrapper ? this.value.join() : this;
   }
   public get: () => T = () => this.value;
   public toString(): string {
